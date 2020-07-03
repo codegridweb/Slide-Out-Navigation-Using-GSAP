@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Slide Out Navigation</title>
+        <link rel="stylesheet" href="styles.css" />
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="navbar">
+                <div class="nav-toggle">menu</div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="nav">
+                <div class="nav-items">
+                    <div class="nav-item">
+                        <a href="#">Home</a>
+                        <div class="nav-item-wrapper"></div>
+                    </div>
+                    <div class="nav-item">
+                        <a href="#">Portfolio</a>
+                        <div class="nav-item-wrapper"></div>
+                    </div>
+                    <div class="nav-item">
+                        <a href="#">About</a>
+                        <div class="nav-item-wrapper"></div>
+                    </div>
+                    <div class="nav-item">
+                        <a href="#">Contact</a>
+                        <div class="nav-item-wrapper"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            TweenMax.from(".navbar", 2, {
+                left: "-20%",
+                ease: Expo.easeInOut,
+                delay: 0.4,
+            });
+
+            var t1 = new TimelineMax({ paused: true });
+
+            t1.to(".nav", 1.8, {
+                width: "94%",
+                ease: Expo.easeInOut,
+            });
+
+            t1.staggerTo(".nav-item a", 0.6, { top: "0px", ease: Expo.easeInOut }, 0.1, "-=0.8");
+
+            t1.reverse();
+            $(document).on("click", ".nav-toggle", function () {
+                t1.reversed(!t1.reversed());
+            });
+
+            $(document).on("click", ".nav-item a", function () {
+                t1.reversed(!t1.reversed());
+            });
+        </script>
+    </body>
+</html>
